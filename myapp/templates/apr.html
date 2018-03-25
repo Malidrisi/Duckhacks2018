@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>My app</title>
+		<meta name="description" content="Sticky Table Headers Revisited: Creating functional and flexible sticky table headers" />
+		<meta name="keywords" content="Sticky Table Headers Revisited" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/demo.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/component.css') }}" />
+ <script type="text/javascript">
+    function form_submit() {
+      document.getElementById("add_form").submit();
+     }
+    
+    function form_submit() {
+      document.getElementById("update_form").submit();
+     }
+
+        
+     $(document).on("click", ".open-AddBookDialog", function () {
+     var Cid = $(this).data('id');
+     var category = $(this).data('category');
+
+
+     $(".modal-body #CID").val( Cid );
+     $(".modal-body #category").val( category );
+
+});
+</script>
+
+<style>
+		input[type=text], select {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+		
+		input[type=submit] {
+			width: 100%;
+			background-color: #A32638;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+		
+		input[type=submit]:hover {
+			background-color: rgba(175, 30, 52, 0.801);
+		}
+		
+
+		</style>
+		<style>
+			* {box-sizing: border-box}
+			
+			/* Style tab links */
+			.tablink {
+				background-color: #555;
+				color: white;
+				float: left;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				padding: 14px 16px;
+				font-size: 17px;
+				width: 8.33%;
+				text-align: center;
+
+			}
+			
+			.tablink:hover {
+				background-color: #777;
+				color: white;
+				text-align: center;
+			}
+
+			.tablink2{
+				background-color: #777;
+				color: white;
+				text-align: center;
+			}
+
+			.tooltip {
+				position: relative;
+				display: inline-block;
+			}
+			
+			.tooltip .tooltiptext {
+				visibility: hidden;
+				width: 120px;
+				background-color: #555;
+				color: #fff;
+				text-align: center;
+				border-radius: 6px;
+				padding: 5px 0;
+				position: absolute;
+				z-index: 1;
+				bottom: 125%;
+				left: 50%;
+				margin-left: -60px;
+				opacity: 0;
+				transition: opacity 0.3s;
+			}
+			
+			.tooltip .tooltiptext::after {
+				content: "";
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				margin-left: -5px;
+				border-width: 5px;
+				border-style: solid;
+				border-color: #555 transparent transparent transparent;
+			}
+			
+			.tooltip:hover .tooltiptext {
+				visibility: visible;
+				opacity: 1;
+			}
+			#chartdiv {
+				width : 100%;
+				height : 500px;
+				font-size : 11px;
+			}
+			</style>
+	</head>
+
+	<body>
+
+		<div class="container">
+			<div class="component"></div>
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				
+				
+				<img alt="User Pic" style="max-width: 300px" src="../static/logo.png" id="profile-image1" class="img-circle img-responsive"> 
+			</div>	
+
+		<div class="component" >
+
+		<a href="/" class="tablink" onclick="openPage('January', this, '#777')"  >Jan</a>
+		<a href="/feb/" class="tablink" onclick="openPage('February', this, '#777')" >Feb</a>
+		<a href="/mar/" class="tablink" onclick="openPage('March', this, '#777')" >Mar</a>
+		<a href="/apr/" class="tablink" onclick="openPage('April', this, '#777')" style="background-color:#777">Apr</a>
+		<a href="/may/" class="tablink" onclick="openPage('May', this, '#777')">May</a>
+		<a href="/jun/" class="tablink" onclick="openPage('June', this, '#777')">Jun</a>
+		<a href="/jul/" class="tablink" onclick="openPage('July', this, '#777')">Jul</a>
+		<a href="/aug/" class="tablink" onclick="openPage('August', this, '#777')">Aug</a>
+		<a href="/sep/" class="tablink" onclick="openPage('September', this, '#777')">Sep</a>
+		<a href="/oct/" class="tablink" onclick="openPage('October', this, '#777')">Oct</a>
+		<a href="/nov/" class="tablink" onclick="openPage('November', this, '#777')">Nov</a>
+		<a href="/dec/" class="tablink" onclick="openPage('December', this, '#777')">Dec</a>
+
+		</div>
+		<div id="April" class="tabcontent">
+			<h1><center>Enter April Spendings</center></h1>
+
+		  <div class="component">
+
+		<!-- Modal Add Table -->
+
+				<form role="form" method="post" action="/addSpendings/" id="add_form">
+				<fieldset>
+					<div class="form-group">
+						<label>Housing</label>
+						<input class="form-control" placeholder="housing" name="ousing" type="text">
+						<label>Bills</label>
+						<input class="form-control" placeholder="bills" name="bills" type="text">
+						<label>Transportation</label>
+						<input class="form-control" placeholder="transportation" name="transportation" type="text">
+						<label>Pocket Money</label>
+						<input class="form-control" placeholder="pocket money" name="poketm" type="text">
+						<label>Savings</label>
+						<input class="form-control" placeholder="savings" name="savings" type="text" >
+					</div>
+					
+				</fieldset>
+			<input type="submit" value="Submit" >
+		</form>
+		</div>
+
+		</div>
+	</div><!-- /container -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		
+
+
+	<script>
+	function openPage(pageName,elmnt,color) {
+	    var i, tabcontent, tablinks;
+	    tabcontent = document.getElementsByClassName("tabcontent");
+	    for (i = 0; i < tabcontent.length; i++) {
+	        tabcontent[i].style.display = "none";
+	    }
+	    tablinks = document.getElementsByClassName("tablink");
+	    for (i = 0; i < tablinks.length; i++) {
+	        tablinks[i].style.backgroundColor = "";
+	    }
+	    document.getElementById(pageName).style.display = "block";
+	    elmnt.style.backgroundColor = color;
+
+	}
+</script>
+
+	</body>
+</html>

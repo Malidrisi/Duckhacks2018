@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -12,13 +17,9 @@
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/demo.css') }}" />
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/component.css') }}" />
-<!-- 		<link rel="stylesheet" type="text/css" href="../static/css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="../static/css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="../static/css/component.css" />
-		<link rel="stylesheet" type="text/css" href="../static/css/MonthSelection.css" />
-		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- -->
+		<script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+		<script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+
 		<style>
 			* {box-sizing: border-box}
 			
@@ -32,11 +33,15 @@
 				cursor: pointer;
 				padding: 14px 16px;
 				font-size: 17px;
-				width: 9.09%;
+				width: 8.33%;
+				text-align: center;
+
 			}
 			
 			.tablink:hover {
 				background-color: #777;
+				color: white;
+				text-align: center;
 			}
 			
 
@@ -83,94 +88,36 @@
 				font-size : 11px;
 			}
 			</style>
-
-
-<!-- 			<script type="text/javascript">
-			google.charts.load('current', {packages: ['corechart', 'line']});
-			google.charts.setOnLoadCallback(drawLineColors);
-
-			function drawLineColors() {
-			      var data = new google.visualization.DataTable();
-			      data.addColumn('string', 'Month');
-			      data.addColumn('number', '$');
-
-			      data.addRows([
-			        ['Jan', 5000],
-			        ['Feb', 8000],
-			        ['Mar', 7000],
-			        ['Apr', 9000],
-			        ['May', 12000],
-			        ['Jun', 8000],
-			        ['Jul', 9000],
-			        ['Aug', 15000],
-			        ['Sep', 16000],
-			        ['Oct', 19000],
-			        ['Nov', 1000],
-			        ['Dec', 20000],  
-			      ]);
-
-			      var options = {
-			        hAxis: {
-			          title: 'Month'
-			        },
-			        vAxis: {
-			          title: '$ Savings'
-			        },
-			        colors: ['#9D1535'],
-			        curveType: 'function',
-			        title: 'Savings'
-			      };
-
-			      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-			      chart.draw(data, options);
-			    }
-		</script> -->
-
-		<!--[if IE]>
-  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif] -->
 	</head>
 
 	<body>
 
 		<div class="container">
-
-			<header>
-				<div>
-					<ul class="container details" >
-						<div>
-						<img alt="User Pic" style="max-width: 150px" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
-						</div>
-						<label style="color: #363D45"> Maha Alidrisi </label>
-						</br></br>
-						<label  style="color: #363D45">Monthly Income:</label> 
-						<label type="text"> 5000 $</label>
-						</br>
-						<label style="color: #363D45"> Savings:</label> 
-						<label type="text"> 1000 $</label>
-					</ul>
-				</div>
-			</header>
-
+				<div class="component" >
+						<img alt="User Pic" style="max-width: 300px" src="../static/logo.png" id="profile-image1" class="img-circle img-responsive"> 
+					</div>
 
 		<div class="component" >
 
-		<button class="tablink" onclick="openPage('January', this, '#777')" id="defaultOpen">Jan</button>
-		<button class="tablink" onclick="openPage('February', this, '#777')" >Feb</button>
-		<button class="tablink" onclick="openPage('March', this, '#777')">Mar</button>
-		<button class="tablink" onclick="openPage('April', this, '#777')">Apr</button>
-		<button class="tablink" onclick="openPage('May', this, '#777')">May</button>
-		<button class="tablink" onclick="openPage('June', this, '#777')">Jun</button>
-		<button class="tablink" onclick="openPage('July', this, '#777')">Jul</button>
-		<button class="tablink" onclick="openPage('August', this, '#777')">Aug</button>
-		<button class="tablink" onclick="openPage('September', this, '#777')">Sep</button>
-		<button class="tablink" onclick="openPage('November', this, '#777')">Nov</button>
-		<button class="tablink" onclick="openPage('December', this, '#777')">Dec</button>
+		<a href="/" class="tablink" style="background-color:#777" onclick="openPage('January', this, '#777')" >Jan</a>
+		<a href="/feb/" class="tablink" onclick="openPage('February', this, '#777')">Feb</a>
+
+		<a href="#" class="tablink" onclick="openPage('March', this, '#777')">Mar</a>
+		<a href="#" class="tablink" onclick="openPage('April', this, '#777')">Apr</a>
+		<a href="#" class="tablink" onclick="openPage('May', this, '#777')">May</a>
+		<a href="#" class="tablink" onclick="openPage('June', this, '#777')">Jun</a>
+		<a href="#" class="tablink" onclick="openPage('July', this, '#777')">Jul</a>
+		<a href="#" class="tablink" onclick="openPage('Aug', this, '#777')">Aug</a>
+		<a href="#" class="tablink" onclick="openPage('Sep', this, '#777')">Sep</a>
+		<a href="#" class="tablink" onclick="openPage('Oct', this, '#777')">Oct</a>
+		<a href="#" class="tablink" onclick="openPage('November', this, '#777')">Nov</a>
+		<a href="#" class="tablink" onclick="openPage('December', this, '#777')">Dec</a>
 
 		</div>
 
 		<div id="January" class="tabcontent">
-		<h1><center>January</center></h1>
+		<h1><center>January Spendings</center></h1>
+		<h3><center><u>Monthly Income:</u> $ 5000 &nbsp&nbsp&nbsp <u>Savings:</u> $ 715	</center></h3	>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 				<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
 				<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
@@ -191,9 +138,9 @@
 					<tbody>
 						{% for d in data %}
 						<tr>
-							<th>{{ d.category_name }}</th>
-							<td>{{ d.expected_value}}</td>
-							<td>{{ d.actual}}</td>
+							<td>{{ d.category_name }}</td>
+							<td>$ {{ d.expected_value}}</td>
+							<td>$ {{ d.actual}}</td>
 							<td>{{ d.comment}}</td>
 							<td>
 							{% if d.actual > d.expected_value%}
@@ -213,94 +160,7 @@
 				<div id="chartdiv"></div>
 			</div>
 		</div>
-
-		<script type="text/javascript">
-			var chartConfig = {
-				"type": "serial",
-				"theme": "none",
-				"dataProvider": [],
-				"valueAxes": [{
-				"gridColor": "#FFFFFF",
-				"gridAlpha": 0.2,
-				"dashLength": 0
-			}],
-				"gridAboveGraphs": true,
-				"startDuration": 1,
-				"graphs": [],
-				"chartCursor": {
-				"categoryBalloonEnabled": false,
-				"cursorAlpha": 0,
-				"zoomable": false
-			},
-				"categoryField": "category",
-				"categoryAxis": {
-				"gridPosition": "start",
-				"gridAlpha": 0
-			},
-				"exportConfig": {
-				"menuTop": 0,
-				"menuItems": [{
-				"icon": '/lib/3/images/export.png',
-				"format": 'png'
-				}]
-			}
-		};
-
-		jQuery(document).ready(function () {
-			// get categories
-			jQuery('#data thead th').each(function (index) {
-				if (index) { // skip the first column
-					chartConfig.graphs.push({
-						"balloonText": "[[category]]: <b>[[value]]</b>",
-						"fillAlphas": 0.5,
-						"lineAlpha": 0.5,
-						"type": "line",
-						"valueField": "value" + index
-					});
-				}
-			});
-
-			// get data points
-			jQuery('#data tbody tr').each(function (index) {
-				var dataPoint = {};
-				jQuery(this).find('th,td').each(function (index2) {
-					if (jQuery(this).is('th')) { // category
-						dataPoint.category = this.innerHTML;
-					}
-					else {
-						dataPoint['value' + index2] = Number(this.innerHTML);
-					}
-				});
-				chartConfig.dataProvider.push(dataPoint);
-			});
-			
-			// make the chart
-			var chart = AmCharts.makeChart("chartdiv", chartConfig);
-		});
-	</script>
-
-		<div id="February" class="tabcontent">
-		  <h3>News</h3>
-		  <p>Some news this fine day!</p> 
-		</div>
-
-		<div id="Contact" class="tabcontent">
-		  <h3>Contact</h3>
-		  <p>Get in touch, or swing by for a cup of coffee.</p>
-		</div>
-
-		<div id="About" class="tabcontent">
-		  <h3>About</h3>
-		  <p>Who we are and what we do.</p>
-		</div>
-
-	</div><!-- /container -->
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
-		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-		
-
-
+	</div>
 	<script>
 	function openPage(pageName,elmnt,color) {
 	    var i, tabcontent, tablinks;
@@ -315,88 +175,67 @@
 	    document.getElementById(pageName).style.display = "block";
 	    elmnt.style.backgroundColor = color;
 
-	}
-	// Get the element with id="defaultOpen" and click on it
-	document.getElementById("defaultOpen").click();
-</script>
+		}
+
+		var chartConfig = {
+			"type": "serial",
+			"dataProvider": [],
+			"valueAxes": [{
+			"gridColor": "#FFFFFF",
+			"gridAlpha": 0.2,
+			"dashLength": 0
+			}],
+			"gridAboveGraphs": true,
+			"startDuration": 1,
+			"graphs": [],
+			"chartCursor": {
+			"categoryBalloonEnabled": false,
+			"cursorAlpha": 0,
+			"zoomable": false
+			},
+			"categoryField": "category",
+			"categoryAxis": {
+			"gridPosition": "start",
+			"gridAlpha": 0
+			},
+			};
+
+			jQuery(document).ready(function() {
+			// get categories
+			jQuery('#data thead th').each(function(index) {
+				if (index) { // skip the first column
+				var c = "#0000ff"
+				if (index % 2 == 1) {
+					c = "##00ff00"
+				}
+				chartConfig.graphs.push({
+					// "balloonText": "[[category]]: <b>[[value]]</b>",
+					"fillAlphas": 0.2,
+					"lineAlpha": 0.2,
+					"type": "column",
+					"fillColor": c,
+					"valueField": "value" + index
+				});
+				}
+			});
+
+			// get data points
+			jQuery('#data tbody tr').each(function(index) {
+				var dataPoint = {};
+				jQuery(this).find('th,td').each(function(index2) {
+				if (jQuery(this).is('th')) { // category
+					dataPoint.category = this.innerHTML;
+				} else {
+					dataPoint['value' + index2] = Number(this.innerHTML);
+				}
+				});
+				chartConfig.dataProvider.push(dataPoint);
+			});
+
+			// make the chart
+			var chart = AmCharts.makeChart("chartdiv", chartConfig);
+			});
+	</script>	
 
 	</body>
 </html>
-
-<!-- =======
-	<body>		
->>>>>>> 436b29d87f96621c493c287825e6e39a7052733a
-		<div class="container">
-
-			<header id="head">
-				<h1>Duck Finance</h1>
-				<img src="../static/css/images/titleDuck.png">
-			</header>
-				<div class="btn-group btn-group-justified other-container">
-			  		<a class="btn btn-primary" href="#jan">Jan</a>
-			  		<a class="btn btn-primary" href="#feb">Feb</a>
-				    <a class="btn btn-primary" href="#mar">Mar</a>
-				    <a class="btn btn-primary" href="#apr">Apr</a>
-				    <a class="btn btn-primary" href="#may">May</a>
-				    <a class="btn btn-primary" href="#jun">Jun</a>
-				    <a class="btn btn-primary" href="#jul">Jul</a>
-				    <a class="btn btn-primary" href="#aug">Aug</a>
-				    <a class="btn btn-primary" href="#sep">Sep</a>
-				    <a class="btn btn-primary" href="#oct">Oct</a>
-				    <a class="btn btn-primary" href="#nov">Nov</a>
-				    <a class="btn btn-primary" href="#dec">Dec</a>
-				</div>
-				<br>
-				<div class="component">
-				<table>
-					<thead>
-						<tr>
-							<th>Category</th>
-							<th>Expected</th>
-							<th>Actual</th>
-							<th>Comments</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for d in data %}
-						<tr>
-							<td style="font-weight: bold ; color:#A32638">{{ d.category_name }}</td>
-
-							<td>{{ d.expected_value}}</td>
-							<td>{{ d.actual}}</td>
-							<td>{{ d.comment}}</td>
-							<td>{% if d.actual > d.expected_value%}
-									<div class="tooltip">
-											<p style= 'color:red'>Over Budget!</p>
-											<span class="tooltiptext">Your are spending more than the expected</span>
-									</div>
-								{%else%}
-									<p style= 'color:green'>On Budget!</p>
-								
-								{% endif %}
-								
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-
-				
-								
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div id="chart_div" style="width: 600px; height: 400px;"></div>
-				</div>
-  				
-  			</div>
-      
-
-		</div><!/container -->
-<!-- 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
-		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-		
-	</body>
-</html> --> 

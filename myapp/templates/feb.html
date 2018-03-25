@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>My app</title>
+		<meta name="description" content="Sticky Table Headers Revisited: Creating functional and flexible sticky table headers" />
+		<meta name="keywords" content="Sticky Table Headers Revisited" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/demo.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/component.css') }}" />
+ 
+		<style>
+			* {box-sizing: border-box}
+			
+			/* Style tab links */
+			.tablink {
+				background-color: #555;
+				color: white;
+				float: left;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				padding: 14px 16px;
+				font-size: 17px;
+				width: 8.33%;
+				text-align: center;
+
+			}
+			
+			.tablink:hover {
+				background-color: #777;
+				color: white;
+				text-align: center;
+			}
+
+			.tablink2{
+				background-color: #777;
+				color: white;
+				text-align: center;
+			}
+
+			.tooltip {
+				position: relative;
+				display: inline-block;
+			}
+			
+			.tooltip .tooltiptext {
+				visibility: hidden;
+				width: 120px;
+				background-color: #555;
+				color: #fff;
+				text-align: center;
+				border-radius: 6px;
+				padding: 5px 0;
+				position: absolute;
+				z-index: 1;
+				bottom: 125%;
+				left: 50%;
+				margin-left: -60px;
+				opacity: 0;
+				transition: opacity 0.3s;
+			}
+			
+			.tooltip .tooltiptext::after {
+				content: "";
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				margin-left: -5px;
+				border-width: 5px;
+				border-style: solid;
+				border-color: #555 transparent transparent transparent;
+			}
+			
+			.tooltip:hover .tooltiptext {
+				visibility: visible;
+				opacity: 1;
+			}
+			#chartdiv {
+				width : 100%;
+				height : 500px;
+				font-size : 11px;
+			}
+			</style>
+
+
+<!-- 			<script type="text/javascript">
+			google.charts.load('current', {packages: ['corechart', 'line']});
+			google.charts.setOnLoadCallback(drawLineColors);
+
+			function drawLineColors() {
+			      var data = new google.visualization.DataTable();
+			      data.addColumn('string', 'Month');
+			      data.addColumn('number', '$');
+
+			      data.addRows([
+			        ['Jan', 5000],
+			        ['Feb', 8000],
+			        ['Mar', 7000],
+			        ['Apr', 9000],
+			        ['May', 12000],
+			        ['Jun', 8000],
+			        ['Jul', 9000],
+			        ['Aug', 15000],
+			        ['Sep', 16000],
+			        ['Oct', 19000],
+			        ['Nov', 1000],
+			        ['Dec', 20000],  
+			      ]);
+
+			      var options = {
+			        hAxis: {
+			          title: 'Month'
+			        },
+			        vAxis: {
+			          title: '$ Savings'
+			        },
+			        colors: ['#9D1535'],
+			        curveType: 'function',
+			        title: 'Savings'
+			      };
+
+			      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+			      chart.draw(data, options);
+			    }
+		</script> -->
+
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif] -->
+	</head>
+
+	<body>
+
+		<div class="container">
+
+			<!-- <header>
+				<div>
+					<ul class="container details" >
+						<div>
+						<img alt="User Pic" style="max-width: 150px" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive"> 
+						</div>
+						<label style="color: #363D45"> Maha Alidrisi </label>
+						</br></br>
+						<label  style="color: #363D45">Monthly Income:</label> 
+						<label type="text"> 5000 $</label>
+						</br>
+						<label style="color: #363D45"> Savings:</label> 
+						<label type="text"> 1000 $</label>
+					</ul>
+				</div>
+			</header> -->
+			<div class="container">
+					<div class="component" >
+							<img alt="User Pic" style="max-width: 300px" src="../static/logo.png" id="profile-image1" class="img-circle img-responsive"> 
+						</div>
+	
+
+
+		<div class="component" >
+
+		<a href="/" class="tablink" onclick="openPage('January', this, '#777')"  >Jan</a>
+		<a href="/feb/" class="tablink" onclick="openPage('February', this, '#777')" style="background-color:#777">Feb</a>
+
+		<a href="/mar/" class="tablink" onclick="openPage('March', this, '#777')">Mar</a>
+		<a href="#" class="tablink" onclick="openPage('April', this, '#777')">Apr</a>
+		<a href="#" class="tablink" onclick="openPage('May', this, '#777')">May</a>
+		<a href="#" class="tablink" onclick="openPage('June', this, '#777')">Jun</a>
+		<a href="#" class="tablink" onclick="openPage('July', this, '#777')">Jul</a>
+		<a href="#" class="tablink" onclick="openPage('Aug', this, '#777')">Aug</a>
+		<a href="#" class="tablink" onclick="openPage('Sep', this, '#777')">Sep</a>
+		<a href="#" class="tablink" onclick="openPage('Oct', this, '#777')">Oct</a>
+		<a href="#" class="tablink" onclick="openPage('November', this, '#777')">Nov</a>
+		<a href="#" class="tablink" onclick="openPage('December', this, '#777')">Dec</a>
+
+		<!-- <buttton class="tablink" onclick="openPage('January', this, '#777')" id="defaultOpen">Jan</button>
+
+		<button class="tablink2" onclick="openPage('March', this, '#777')">Mar</button>
+		<button class="tablink" onclick="openPage('April', this, '#777')">Apr</button>
+		<button class="tablink" onclick="openPage('May', this, '#777')">May</button>
+		<button class="tablink" onclick="openPage('June', this, '#777')">Jun</button>
+		<button class="tablink" onclick="openPage('July', this, '#777')">Jul</button>
+		<button class="tablink" onclick="openPage('August', this, '#777')">Aug</button>
+		<button class="tablink" onclick="openPage('September', this, '#777')">Sep</button>
+		<button class="tablink" onclick="openPage('November', this, '#777')">Nov</button>
+		<button class="tablink" onclick="openPage('December', this, '#777')">Dec</button> -->
+
+		</div>
+
+		<div id="February" class="tabcontent">
+				<h1><center>February Spendings</center></h1>
+				<h3><center><u>Monthly Income:</u> $ 5000 &nbsp&nbsp&nbsp <u>Savings:</u> $ 644	</center></h3>
+
+				<div class="component">
+						<table id="data">
+							<thead>
+								<tr>
+									<th>Category</th>
+									<th>Expected</th>
+									<th>Actual</th>
+									<th>Comments</th>
+									<th>Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for d in data %}
+								<tr>
+									<td>{{ d.category_name }} </td>
+									<td>$ {{ d.expected_value}} </td>
+									<td>$ {{ d.actual}}</td>
+									<td> {{ d.comment}}</td>
+									<td>
+									{% if d.actual > d.expected_value%}
+										<div class="tooltip">
+											<span class="tooltiptext"> Spending more than the expected</span>
+											<p style= 'color:red' >Over Budget!</p>
+		
+										</div>
+									{%else%}
+										<p style= 'color:green'>On Budget!</p>
+									{% endif %}
+									</td>
+								</tr>
+									{% endfor %}
+						</tbody>
+						</table>
+						<div id="chartdiv"></div>
+					</div>
+		</div>
+
+
+
+	</div><!-- /container -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		
+
+
+	<script>
+	function openPage(pageName,elmnt,color) {
+	    var i, tabcontent, tablinks;
+	    tabcontent = document.getElementsByClassName("tabcontent");
+	    for (i = 0; i < tabcontent.length; i++) {
+	        tabcontent[i].style.display = "none";
+	    }
+	    tablinks = document.getElementsByClassName("tablink");
+	    for (i = 0; i < tablinks.length; i++) {
+	        tablinks[i].style.backgroundColor = "";
+	    }
+	    document.getElementById(pageName).style.display = "block";
+	    elmnt.style.backgroundColor = color;
+
+	}
+	// Get the element with id="defaultOpen" and click on it
+</script>
+
+	</body>
+</html>
+
+<!-- =======
+	<body>		
+>>>>>>> 436b29d87f96621c493c287825e6e39a7052733a
+		<div class="container">
+
+			<header id="head">
+				<h1>Duck Finance</h1>
+				<img src="../static/css/images/titleDuck.png">
+			</header>
+				<div class="btn-group btn-group-justified other-container">
+			  		<a class="btn btn-primary" href="#jan">Jan</a>
+			  		<a class="btn btn-primary" href="#feb">Feb</a>
+				    <a class="btn btn-primary" href="#mar">Mar</a>
+				    <a class="btn btn-primary" href="#apr">Apr</a>
+				    <a class="btn btn-primary" href="#may">May</a>
+				    <a class="btn btn-primary" href="#jun">Jun</a>
+				    <a class="btn btn-primary" href="#jul">Jul</a>
+				    <a class="btn btn-primary" href="#aug">Aug</a>
+				    <a class="btn btn-primary" href="#sep">Sep</a>
+				    <a class="btn btn-primary" href="#oct">Oct</a>
+				    <a class="btn btn-primary" href="#nov">Nov</a>
+				    <a class="btn btn-primary" href="#dec">Dec</a>
+				</div>
+				<br>
+				<div class="component">
+				<table>
+					<thead>
+						<tr>
+							<th>Category</th>
+							<th>Expected</th>
+							<th>Actual</th>
+							<th>Comments</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for d in data %}
+						<tr>
+							<td style="font-weight: bold ; color:#A32638">{{ d.category_name }}</td>
+
+							<td>{{ d.expected_value}}</td>
+							<td>{{ d.actual}}</td>
+							<td>{{ d.comment}}</td>
+							<td>{% if d.actual > d.expected_value%}
+									<div class="tooltip">
+											<p style= 'color:red'>Over Budget!</p>
+											<span class="tooltiptext">Your are spending more than the expected</span>
+									</div>
+								{%else%}
+									<p style= 'color:green'>On Budget!</p>
+								
+								{% endif %}
+								
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				
+								
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="chart_div" style="width: 600px; height: 400px;"></div>
+				</div>
+  				
+  			</div>
+      
+
+		</div><!/container -->
+<!-- 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+		
+	</body>
+</html> --> 
